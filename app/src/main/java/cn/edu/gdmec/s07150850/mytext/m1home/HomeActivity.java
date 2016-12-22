@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import cn.edu.gdmec.s07150850.mytext.R;
 import cn.edu.gdmec.s07150850.mytext.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.s07150850.mytext.m4appmanager.AppManagerActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -53,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
                         //    startActivity(SecurityPhoneActivity.class);
                         break;
                     case 2:
-                        //    startActivity(AppManagerActivity.class);
+                         startActivity(AppManagerActivity.class);
                         break;
                     case 3:
                         //      startActivity(VirusScanActivity.class);
