@@ -1,6 +1,7 @@
 package cn.edu.gdmec.s07150850.mytext.m9advancedtools.fragment;
 
 
+import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
@@ -9,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -62,7 +65,15 @@ public class AppLockFragment extends Fragment{
     public void onResume() {
         dao=new AppLockDao(getActivity());
         appInfos= AppInfoParser.getAppInfos(getActivity());
-
+        fillData();
+        initListener();
+        getActivity().getContentResolver().registerContentObserver(uri, true,
+                new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+               fillData();
+            }
+        });
         super.onResume();
     }
     private void fillData(){
@@ -85,8 +96,28 @@ public class AppLockFragment extends Fragment{
     private void initListener(){
         mLockLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                TranslateAnimation ta=new TranslateAnimation(Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_PARENT,-1.0f,
+                        Animation.RELATIVE_TO_SELF,0,Animation.RELATIVE_TO_SELF,0);
+                ta.setDuration(300);
+                view.startAnimation(ta);
+                new Thread(){
+                    public void run(){
+                        try{
+                            Thread.sleep(300);
+                        }catch(InterruptedException e){
+                            e.printStackTrace();
+                        }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                dao.delete(mLockApps.get(position).packageName);
+                                mLockApps.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    };
+                }.start();
             }
         });
     }

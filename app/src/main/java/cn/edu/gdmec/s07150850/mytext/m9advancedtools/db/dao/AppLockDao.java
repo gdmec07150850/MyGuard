@@ -10,7 +10,7 @@ import android.net.Uri;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.gdmec.s07150850.mytext.m9advancedtools.db.AppLockOpenHelper;
+import cn.edu.gdmec.s07150816.myguard.m9advancedtools.db.AppLockOpenHelper;
 
 public class AppLockDao{
     private Context context;
@@ -18,6 +18,7 @@ public class AppLockDao{
     private Uri uri=Uri.parse("content://cn.edu.gdmec.s07150816.myguard.applock");
     public AppLockDao(Context context){
         this.context=context;
+        
         openHelper=new AppLockOpenHelper(context);
     }
     public boolean insert(String packagename){
