@@ -15,6 +15,7 @@ import cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.db.TrafficOpenHelper;
 /**
  * Created by zzs on 2016/12/25.
  */
+
 public class TrafficDao {
     private TrafficOpenHelper helper;
     public TrafficDao(Context context){

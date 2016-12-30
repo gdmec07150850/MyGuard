@@ -17,6 +17,7 @@ import java.io.InputStream;
 
 import cn.edu.gdmec.s07150850.mytext.R;
 
+
 public class VirusScanActivity extends AppCompatActivity
 implements View.OnClickListener{
 
