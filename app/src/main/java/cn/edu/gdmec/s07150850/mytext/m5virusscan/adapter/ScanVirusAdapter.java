@@ -15,6 +15,7 @@ import cn.edu.gdmec.s07150850.mytext.m5virusscan.entity.ScanAppInfo;
 /**
  * Created by zzs on 2016/12/22.
  */
+
 public class ScanVirusAdapter extends BaseAdapter{
 
     private List<ScanAppInfo> mScanAppInfos;

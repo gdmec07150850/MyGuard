@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 /**
  * Created by zzs on 2016/12/22.
  */
+
 public class MD5Utils {
     public static String getFileMd5(String path){
         try{

@@ -10,6 +10,7 @@ import java.io.File;
 /**
  * Created by zzs on 2016/12/22.
  */
+
 public class AntiVirusDao {
     private static Context context;
     private static String dbname;

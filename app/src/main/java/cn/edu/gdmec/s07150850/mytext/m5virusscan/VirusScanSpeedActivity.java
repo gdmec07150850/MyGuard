@@ -29,6 +29,7 @@ import cn.edu.gdmec.s07150850.mytext.m5virusscan.entity.ScanAppInfo;
 import cn.edu.gdmec.s07150850.mytext.m5virusscan.utils.MD5Utils;
 
 
+
 public class VirusScanSpeedActivity extends AppCompatActivity
 implements View.OnClickListener{
 

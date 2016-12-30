@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 /**
  * Created by zzs on 2016/12/22.
  */
+
 public class ScanAppInfo {
     public String appName;
     public boolean isVirus;
