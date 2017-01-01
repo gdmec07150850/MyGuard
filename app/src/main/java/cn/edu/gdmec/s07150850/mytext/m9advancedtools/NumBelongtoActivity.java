@@ -1,8 +1,8 @@
 package cn.edu.gdmec.s07150850.mytext.m9advancedtools;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -18,8 +18,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
-import cn.edu.gdmec.s07150816.myguard.R;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.db.dao.NumBelongtoDao;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.db.dao.NumBelongtoDao;
+
 
 public class NumBelongtoActivity extends AppCompatActivity implements View.OnClickListener{
 

@@ -17,6 +17,7 @@ import cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.db.dao.TrafficDao;
  * Created by zzs on 2016/12/25.
  */
 
+
 public class TrafficMonitoringService extends Service{
     private long mOldRxBytes;
     private long mOldTxBytes;

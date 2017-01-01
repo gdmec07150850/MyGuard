@@ -10,38 +10,23 @@ import android.net.Uri;
 import java.io.File;
 
 /**
- * Created by zzs on 2016/12/21.
+ * Created by Administrator on 2016/12/20 0020.
  */
 public class MyUtils {
-
     public static String getVersion(Context context){
-        //PackageManager 可以获取清单文件中的所有信息
         PackageManager manager=context.getPackageManager();
-        try {
+        try{
             PackageInfo packageInfo=manager.getPackageInfo(context.getPackageName(),0);
             return packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
+        }catch (PackageManager.NameNotFoundException e){
             e.printStackTrace();
             return "";
         }
-
-
-
-
     }
-    /*
-    安装新版本
-    @param activity
-    */
-    public static void installApk(Activity activity){
-        Intent intent=new Intent("android.intent.action.VIEW");
-        //添加默认分类
-        intent.addCategory("android.intent.category.DEFAULT");
-        //设置数据和分类 在文件中
-        intent.setDataAndType(
-                Uri.fromFile(new File("/mnt/sdcard/mobilesafe2.0.apk")),
-                "application/vnd.android.package-archive");
-        //如果开启的activity退出的时候,会调回当前activity的onActivityResult
+
+    public static  void installApk(Activity activity){
+        Intent intent=new Intent("android.intent.category.DEFAULT");
+        intent.setDataAndType(Uri.fromFile(new File("/mnt/sdcard/mobilesafe2.0.apk")),"application/vnd.android.package-archive");
         activity.startActivityForResult(intent,0);
     }
 }

@@ -11,14 +11,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.edu.gdmec.s07150816.myguard.R;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.entity.AppInfo;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.entity.AppInfo;
+
 
 public class AppLockAdapter extends BaseAdapter{
     private List<AppInfo> appInfos;
     private Context context;
 
-    public AppLockAdapter(List<AppInfo>appInfos,Context context){
+    public AppLockAdapter(List<AppInfo>appInfos, Context context){
         super();
         this.appInfos=appInfos;
         this.context=context;

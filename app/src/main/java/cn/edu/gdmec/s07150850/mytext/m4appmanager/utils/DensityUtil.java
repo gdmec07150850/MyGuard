@@ -1,7 +1,6 @@
 package cn.edu.gdmec.s07150850.mytext.m4appmanager.utils;
 
 import android.content.Context;
-import android.widget.Toast;
 
 /**
  * Created by zzs on 2016/12/22.

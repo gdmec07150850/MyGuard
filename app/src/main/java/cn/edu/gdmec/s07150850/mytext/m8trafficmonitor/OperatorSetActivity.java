@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import cn.edu.gdmec.s07150850.mytext.R;
 
+
 public class OperatorSetActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Spinner mSelectSP;

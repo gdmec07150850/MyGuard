@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.Date;
+import cn.edu.gdmec.s07150850.mytext.R;
 
-import cn.edu.gdmec.s07150850.myguard.R;
 
 /**
  * Created by PC-DELL on 2016/12/22.

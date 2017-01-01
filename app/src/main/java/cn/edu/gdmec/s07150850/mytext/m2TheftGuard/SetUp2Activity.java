@@ -1,7 +1,6 @@
 package cn.edu.gdmec.s07150850.mytext.m2TheftGuard;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -10,9 +9,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import cn.edu.gdmec.s07150850.mytext.R;
 
-import cn.edu.gdmec.s07150850.myguard.R;
 
 public class SetUp2Activity extends BaseSetUpActivity implements View.OnClickListener{
 

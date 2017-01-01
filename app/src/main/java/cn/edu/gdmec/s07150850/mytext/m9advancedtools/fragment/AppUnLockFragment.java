@@ -2,12 +2,10 @@ package cn.edu.gdmec.s07150850.mytext.m9advancedtools.fragment;
 
 import android.database.ContentObserver;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +18,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.gdmec.s07150816.myguard.R;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.adapter.AppLockAdapter;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.db.dao.AppLockDao;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.entity.AppInfo;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.utils.AppInfoParser;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.adapter.AppLockAdapter;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.db.dao.AppLockDao;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.entity.AppInfo;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.utils.AppInfoParser;
 
-public class AppUnLockFragment extends Fragment{
+
+public class AppUnLockFragment extends Fragment {
     private TextView mUnLockTV;
     private ListView mUnLockLV;
     List<AppInfo> unlockApps=new ArrayList<AppInfo>();

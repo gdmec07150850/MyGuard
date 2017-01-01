@@ -15,7 +15,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.entity.SmsInfo;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.entity.SmsInfo;
+
 
 public class SmsReducitionUtils{
     public interface SmsReducitionCallBack{
@@ -50,7 +51,7 @@ public class SmsReducitionUtils{
                             smsInfo=new SmsInfo();
                         }else if ("body".equals(parser.getName())){
                             try{
-                                smsInfo.body=Crypto.decrypt("123",parser.nextText());
+                                smsInfo.body= Crypto.decrypt("123",parser.nextText());
                             }catch(Exception e){
                                 e.printStackTrace();
                                 smsInfo.body="短信还原失败";

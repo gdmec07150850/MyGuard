@@ -26,6 +26,7 @@ import cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.db.dao.TrafficDao;
 import cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.service.TrafficMonitoringService;
 import cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.utils.SystemInfoUtils;
 
+
 public class TrafficMonitoringActivity extends AppCompatActivity implements View.OnClickListener{
 
     private SharedPreferences mSP;

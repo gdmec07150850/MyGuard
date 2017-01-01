@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageStats;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,14 +20,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.gdmec.s07150804.myguard.R;
-import m6cleancache.adapter.CacheCleanAdapter;
-import m6cleancache.entity.CacheInfo;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m6cleancache.adapter.CacheCleanAdapter;
+import cn.edu.gdmec.s07150850.mytext.m6cleancache.entity.CacheInfo;
+
 
 public class CacheClearListActivity extends AppCompatActivity implements View.OnClickListener {
     protected static final int SCANNING=100;
@@ -61,7 +60,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
                         mCacheBtn.setEnabled(true);
                     } else {
                         mCacheBtn.setEnabled(false);
-                        Toast.makeText(CacheClearListActivity.this, "您的手机洁净如新", 0).show();
+                        Toast.makeText(CacheClearListActivity.this, "您的手机洁净如新", Toast.LENGTH_SHORT).show();
 
                     }
                     break;
@@ -131,12 +130,9 @@ public void getCacheSize(PackageInfo info){
         Method method=PackageManager.class.getDeclaredMethod(
                 "getPackageSizeInfo",String.class,IPackageStatsObserver.class);
         method.invoke(pm,info.packageName,new MyPackObserver(info));
-    } catch (NoSuchMethodException e) {
+    } catch (Exception e) {
         e.printStackTrace();
-    } catch (InvocationTargetException e) {
-        e.printStackTrace();
-    } catch (IllegalAccessException e) {
-        e.printStackTrace();
+
     }
 }
 
@@ -180,7 +176,7 @@ switch (v.getId()){
                 cacheInfo.cacheSize=cachesize;
                 cacheInfo.packagename=info.packageName;
                 cacheInfo.appName=info.applicationInfo.loadLabel(pm).toString();
-                cacheInfo.appIcon= (Drawable) info.applicationInfo.loadLabel(pm);
+                cacheInfo.appIcon=info.applicationInfo.loadIcon(pm);
                 cacheInfos.add(cacheInfo);
                 cacheMemory+=cachesize;
             }

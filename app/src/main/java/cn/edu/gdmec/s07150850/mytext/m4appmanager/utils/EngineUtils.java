@@ -21,7 +21,7 @@ public class EngineUtils {
 
     public static void shareApplication(Context context, AppInfo appInfo){
         Intent intent=new Intent("android.intent.action.SEND");
-        intent.addCategory("android.intent.category.DEFAULI");
+        intent.addCategory("android.intent.category.DEFAULT");
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT,
                 "推荐您使用一款软件，名称叫："+appInfo.appName+
@@ -43,7 +43,7 @@ public class EngineUtils {
 
     public static void SettingAppDetail(Context context,AppInfo appInfo){
         Intent intent=new Intent();
-        intent.setAction("android.setting.APPLICATION_DETAILS_SETTINGS");
+        intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         intent.setData(Uri.parse("package:"+appInfo.packageName));
         context.startActivity(intent);

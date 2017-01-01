@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InterruptedIOException;
 
 public class SmsBackUpUtils{
     public interface BackupStatusCallback{
@@ -34,8 +33,7 @@ public class SmsBackUpUtils{
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)
                 &&freesize>10241*10241){
-            File file=new File(Environment.getDownloadCacheDirectory(),
-                    "backup.xml");
+            File file=new File(Environment.getExternalStorageDirectory(),"backup.xml");
             FileOutputStream os=new FileOutputStream(file);
             serializer.setOutput(os,"utf-8");
             serializer.startDocument("utf-8",true);
@@ -52,7 +50,7 @@ public class SmsBackUpUtils{
                 serializer.startTag(null,"sms");
                 serializer.startTag(null,"body");
                 try {
-                    String bodyencpyt=Crypto.encrypt("123",cursor.getString(1));
+                    String bodyencpyt= Crypto.encrypt("123",cursor.getString(1));
                     serializer.text(bodyencpyt);
                 }catch(Exception e1){
                     e1.printStackTrace();

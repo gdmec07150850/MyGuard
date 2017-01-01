@@ -32,6 +32,7 @@
         style="@style/textview16sp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/deep_gary"/>
+        android:textColor="@color/deep_gary" />
+
 
 </LinearLayout>

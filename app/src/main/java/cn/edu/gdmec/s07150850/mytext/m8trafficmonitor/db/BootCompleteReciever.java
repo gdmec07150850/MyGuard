@@ -1,4 +1,4 @@
-package cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.receiver;
+package cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.db;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

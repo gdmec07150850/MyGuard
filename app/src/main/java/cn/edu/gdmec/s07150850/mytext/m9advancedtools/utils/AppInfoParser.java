@@ -1,6 +1,7 @@
 package cn.edu.gdmec.s07150850.mytext.m9advancedtools.utils;
 
 //Created by hcm on 2016/12/21
+
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,7 +10,8 @@ import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.entity.AppInfo;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.entity.AppInfo;
+
 ;
 
 public class AppInfoParser{

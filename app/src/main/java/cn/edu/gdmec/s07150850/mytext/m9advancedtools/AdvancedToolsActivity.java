@@ -1,14 +1,15 @@
 package cn.edu.gdmec.s07150850.mytext.m9advancedtools;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cn.edu.gdmec.s07150816.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 public class AdvancedToolsActivity extends AppCompatActivity implements View.OnClickListener{
 

@@ -8,36 +8,34 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import java.io.File;
 
 /**
- * Created by zzs on 2016/12/21.
+ * Created by Administrator on 2016/12/20 0020.
  */
 public class DownloadUtils {
-
-    public void downapk(String url, String tragerFile, final MyCallBack myCallBack) {
-        HttpUtils httpUtils = new HttpUtils();
-        httpUtils.download(url, tragerFile, new RequestCallBack<File>() {
+    public void downapk(String url,String targerFile,final MyCallBack myCallBack){
+        HttpUtils httpUtils=new HttpUtils();
+        httpUtils.download(url, targerFile, new RequestCallBack<File>() {
             @Override
-            public void onSuccess(ResponseInfo<File> arg0) {
-                myCallBack.onSuccess(arg0);
+            public void onSuccess(ResponseInfo<File> responseInfo) {
+                myCallBack.onSuccess(responseInfo);
             }
 
             @Override
-            public void onFailure(HttpException arg0, String arg1) {
-                myCallBack.onFailure(arg0, arg1);
+            public void onFailure(HttpException e, String s) {
+                myCallBack.onFailure(e,s);
             }
 
             @Override
             public void onLoading(long total, long current, boolean isUploading) {
                 super.onLoading(total, current, isUploading);
-                myCallBack.onLoading(total, current, isUploading);
+                myCallBack.onLoadding(total,current,isUploading);
             }
         });
+
     }
 }
 
-interface MyCallBack {
-    void onSuccess(ResponseInfo<File> arg0);
-
-    void onFailure(HttpException arg0, String arg1);
-
-    void onLoading(long total, long current, boolean isUploading);
+interface MyCallBack{
+    void onSuccess(ResponseInfo<File> responseInfo);
+    void onFailure(HttpException e, String s);
+    void onLoadding(long total, long current, boolean isUploading);
 }

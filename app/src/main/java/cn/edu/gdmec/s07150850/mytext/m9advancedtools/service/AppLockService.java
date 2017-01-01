@@ -14,14 +14,14 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.EnterPswActivity;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.db.dao.AppLockDao;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.EnterPswActivity;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.db.dao.AppLockDao;
 
 
 public class AppLockService extends Service{
         private boolean flag=false;
     private AppLockDao dao;
-    private Uri uri=Uri.parse("content://cn.edu.gdmec.s07150816.myguard.applock");
+    private Uri uri=Uri.parse("content://cn.edu.gdmec.s07150850.mytext.applock");
     private List<String> packagenames;
     private Intent intent;
     private ActivityManager am;
@@ -45,7 +45,7 @@ public class AppLockService extends Service{
         getContentResolver().registerContentObserver(uri,true,observer);
         packagenames=dao.findAll();
         receiver=new AppLockReceiver();
-        IntentFilter filter=new IntentFilter("cn.edu.gdmec.s07150816.myguard.applock");
+        IntentFilter filter=new IntentFilter("cn.edu.gdmec.s07150850.mytext.applock");
         filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         registerReceiver(receiver,filter);

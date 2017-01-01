@@ -3,8 +3,8 @@ package cn.edu.gdmec.s07150850.mytext.m9advancedtools;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -16,8 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.edu.gdmec.s07150816.myguard.R;
-//m2
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.utils.MD5Utils;
+
 public class EnterPswActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mAppIcon;
@@ -68,8 +69,7 @@ public class EnterPswActivity extends AppCompatActivity implements View.OnClickL
                     return;
                 }else {
                     if (!TextUtils.isEmpty(password)){
-                        //m2
-                        if (true){
+                        if (MD5Utils.encode(inputpsw).equals(password)){
                             Intent intent=new Intent();
                             intent.setAction("cn.itcast.mobliesafe.applock");
                             intent.putExtra("packagename",packagename);
@@ -87,7 +87,7 @@ public class EnterPswActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void startAnim(){
-        Animation animation= AnimationUtils.loadAnimation(this,R.anim.shake);
+        Animation animation= AnimationUtils.loadAnimation(this, R.anim.shake);
         mEnterPswLL.setAnimation(animation);
     }
 

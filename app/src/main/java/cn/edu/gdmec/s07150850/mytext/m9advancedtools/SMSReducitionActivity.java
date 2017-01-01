@@ -1,7 +1,7 @@
 package cn.edu.gdmec.s07150850.mytext.m9advancedtools;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -11,10 +11,11 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
-import cn.edu.gdmec.s07150816.myguard.R;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.utils.SmsReducitionUtils;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.utils.UIUtils;
-import cn.edu.gdmec.s07150816.myguard.m9advancedtools.widget.MyCircleProgress;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.utils.SmsReducitionUtils;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.utils.UIUtils;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.widget.MyCircleProgress;
+
 
 public class SMSReducitionActivity extends AppCompatActivity implements View.OnClickListener{
 

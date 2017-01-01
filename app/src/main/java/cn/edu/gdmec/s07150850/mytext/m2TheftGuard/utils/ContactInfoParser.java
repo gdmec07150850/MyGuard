@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.edu.gdmec.s07150850.myguard.m2TheftGuard.entity.ContactInfo;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.entity.ContactInfo;
 
 /**
  * Created by PC-DELL on 2016/12/22.
@@ -27,7 +27,8 @@ public class ContactInfoParser {
                 System.out.println("联系人："+id);
                 ContactInfo info = new ContactInfo();
                 info.id=id;
-                Cursor dataCursor = resolver.query(datauri,new String[]{"datal","mimetype"},"raw_contact_id=?",new String[]{id},null);
+
+                Cursor dataCursor = resolver.query(datauri,new String[]{"data1","mimetype"},"raw_contact_id=?",new String[]{id},null);
                 while (dataCursor.moveToNext()){
                     String datal = dataCursor.getString(0);
                     String mimetype = dataCursor.getString(1);

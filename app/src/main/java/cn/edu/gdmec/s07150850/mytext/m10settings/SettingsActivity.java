@@ -2,17 +2,19 @@ package cn.edu.gdmec.s07150850.mytext.m10settings;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cn.edu.gdmec.s07150850.myguard.R;
-import cn.edu.gdmec.s07150850.myguard.m10settings.utils.SystemInfoUtils;
-import cn.edu.gdmec.s07150850.myguard.m10settings.widget.SettingView;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m10settings.utils.SystemInfoUtils;
+import cn.edu.gdmec.s07150850.mytext.m10settings.widget.SettingView;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.service.AppLockService;
+
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener,SettingView.OnCheckedStatusIsChanged{
 
@@ -46,11 +48,21 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onStart(){
-        running = SystemInfoUtils.isServiceRunning(this,"cn.itcast.mobliesafe.chapter09.service.AppLockService");
+         running = SystemInfoUtils.isServiceRunning(this,"cn.itcast.mobliesafe.chapter09.service.AppLockService");
         mAppLockSV.setChecked(running);
         mBlackNumSV.setChecked(mSP.getBoolean("BlackNumStatus",true));
         super.onStart();
 
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.imgv_leftbtn:
+                finish();
+                break;
+        }
     }
 
     @Override
@@ -62,25 +74,15 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.sv_applock_set:
                 saveStatus("AppLockService",isChecked);
-            if (isChecked){
-                //intent = new Intent(this,AppLockService.class);
-                startService(intent);
-            }else{
-               stopService(intent);
-            }
+                if (isChecked){
+                    intent = new Intent(this,AppLockService.class);
+                    startService(intent);
+                }else{
+                    stopService(intent);
+                }
                 break;
         }
     }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.imgv_leftbtn:
-                finish();
-                break;
-        }
-    }
-
 
     private void saveStatus(String keyname,boolean isChecked){
         if (!TextUtils.isEmpty(keyname)){

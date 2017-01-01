@@ -1,9 +1,9 @@
 package cn.edu.gdmec.s07150850.mytext.m2TheftGuard;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -13,10 +13,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.edu.gdmec.s07150850.myguard.R;
-import cn.edu.gdmec.s07150850.myguard.m2TheftGuard.adapter.ContactAdapter;
-import cn.edu.gdmec.s07150850.myguard.m2TheftGuard.entity.ContactInfo;
-import cn.edu.gdmec.s07150850.myguard.m2TheftGuard.utils.ContactInfoParser;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.adapter.ContactAdapter;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.entity.ContactInfo;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.utils.ContactInfoParser;
+
 
 public class ContactSelectActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -49,9 +50,10 @@ public class ContactSelectActivity extends AppCompatActivity implements View.OnC
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.purple));
-        mListView = findViewById(R.id.lv_contact);
+        mListView = (ListView) findViewById(R.id.lv_contact);
         new Thread(){
             public void run(){
+                //
                 systemContacts = ContactInfoParser.getSystemContact(ContactSelectActivity.this);
                 systemContacts.addAll(ContactInfoParser.getSimContacts(ContactSelectActivity.this));
                 mHander.sendEmptyMessage(10);

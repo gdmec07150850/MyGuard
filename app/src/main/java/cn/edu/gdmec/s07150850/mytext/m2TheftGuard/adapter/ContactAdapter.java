@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.edu.gdmec.s07150850.myguard.R;
-import cn.edu.gdmec.s07150850.myguard.m2TheftGuard.entity.ContactInfo;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.entity.ContactInfo;
+
 
 /**
  * Created by PC-DELL on 2016/12/22.

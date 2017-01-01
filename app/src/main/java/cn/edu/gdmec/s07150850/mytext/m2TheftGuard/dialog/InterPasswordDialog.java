@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import cn.edu.gdmec.s07150850.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 /**
  * Created by PC-DELL on 2016/12/22.

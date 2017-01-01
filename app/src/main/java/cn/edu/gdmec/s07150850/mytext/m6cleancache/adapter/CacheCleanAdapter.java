@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.edu.gdmec.s07150804.myguard.R;
-import m6cleancache.entity.CacheInfo;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m6cleancache.entity.CacheInfo;
+
 
 public class CacheCleanAdapter extends BaseAdapter {
     private Context context;
@@ -22,15 +23,6 @@ public class CacheCleanAdapter extends BaseAdapter {
         this.cacheInfos=cacheInfos;
     }
 
-    @Override
-    public boolean areAllItemsEnabled() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled(int position) {
-        return false;
-    }
 
     @Override
     public int getCount() {

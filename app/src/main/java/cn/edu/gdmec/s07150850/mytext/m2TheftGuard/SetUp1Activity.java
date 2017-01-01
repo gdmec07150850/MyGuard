@@ -1,11 +1,11 @@
 package cn.edu.gdmec.s07150850.mytext.m2TheftGuard;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import cn.edu.gdmec.s07150850.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 public class SetUp1Activity extends BaseSetUpActivity {
 

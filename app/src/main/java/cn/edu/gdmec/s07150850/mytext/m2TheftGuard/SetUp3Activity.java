@@ -2,7 +2,6 @@ package cn.edu.gdmec.s07150850.mytext.m2TheftGuard;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,7 +9,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import cn.edu.gdmec.s07150850.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 public class SetUp3Activity extends BaseSetUpActivity implements View.OnClickListener {
 

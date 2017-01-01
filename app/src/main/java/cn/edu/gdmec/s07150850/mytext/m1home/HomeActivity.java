@@ -4,8 +4,8 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,19 +15,27 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m10settings.SettingsActivity;
 import cn.edu.gdmec.s07150850.mytext.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.LostFindActivity;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.dialog.InterPasswordDialog;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.dialog.SetUpPasswordDialog;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.recevier.MyDeviceAdminReciever;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.utils.MD5Utils;
+import cn.edu.gdmec.s07150850.mytext.m3communicationguard.SecurityPhoneActivity;
 import cn.edu.gdmec.s07150850.mytext.m4appmanager.AppManagerActivity;
+import cn.edu.gdmec.s07150850.mytext.m5virusscan.VirusScanActivity;
+import cn.edu.gdmec.s07150850.mytext.m6cleancache.CacheClearListActivity;
+import cn.edu.gdmec.s07150850.mytext.m7processmanager.ProcessManagerActivity;
+import cn.edu.gdmec.s07150850.mytext.m8trafficmonitor.TrafficMonitoringActivity;
+import cn.edu.gdmec.s07150850.mytext.m9advancedtools.AdvancedToolsActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
     private GridView gv_home;
-
     private SharedPreferences msharedPreferences;
-
     private DevicePolicyManager policyManager;
-
     private ComponentName componentName;
-
     private long mExitTime;
 
     @Override
@@ -35,158 +43,152 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
-        msharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
-
-        gv_home = (GridView) findViewById(R.id.gv_home);
+        msharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
+        gv_home = (GridView)findViewById(R.id.gv_home);
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
 
+
+
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
                     case 0:
-                        if (isSetUpPassword()) {
+                        if(isSetUpPassword()){
                             showInterPswdDialog();
-                        } else {
-                            showSetUpPswdDialog();
+                        }else{
+                            showSetUpPswDialog();
                         }
                         break;
-                    case 1:
-                        //    startActivity(SecurityPhoneActivity.class);
+                    case 1://通讯卫士
+                        startActivity(SecurityPhoneActivity.class);
                         break;
-                    case 2:
-                         startActivity(AppManagerActivity.class);
+                    case 2://软件管家
+                        startActivity(AppManagerActivity.class);
                         break;
-                    case 3:
-                        //      startActivity(VirusScanActivity.class);
+                    case 3://手机杀毒
+                        startActivity(VirusScanActivity.class);
                         break;
-                    case 4:
-                        //      startActivity(CacheClearListActivity.class);
+                    case 4://缓存清理
+                        startActivity(CacheClearListActivity.class);
                         break;
-                    case 5:
-                        //     startActivity(ProcessManagerActivity.class);
+                    case 5://进程管理
+                        startActivity(ProcessManagerActivity.class);
                         break;
-                    case 6:
-                        //    startActivity(TrafficMonitoringActivity.class);
+                    case 6://流量统计
+                        startActivity(TrafficMonitoringActivity.class);
                         break;
-                    case 7:
-                        //      startActivity(AdvancedtoolsActivity.class);
+                    case 7://高级工具
+                        startActivity(AdvancedToolsActivity.class);
                         break;
-                    case 8:
-                        //     startActivity(SettingsActivity.class);
+                    case 8://设置中心
+                        startActivity(SettingsActivity.class);
                         break;
                 }
             }
         });
 
-        policyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
-        //componentName = new ComponentName(this, MyDeviceAdminReciever.class);
-        boolean active = policyManager.isAdminActive(componentName);
-        if (!active) {
-            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, componentName);
-            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "获取超级管理员权限,用于远程锁屏和清除数据");
+        policyManager= (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+        componentName=new ComponentName(this,MyDeviceAdminReciever.class);
+        boolean active=policyManager.isAdminActive(componentName);
+        if(!active){
+            Intent intent=new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,componentName);
+            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,"获取超级管理员权限，用于远程锁屏和清理数据");
             startActivity(intent);
         }
 
+
     }
 
-    private void showSetUpPswdDialog() {
-       /* final SetUpPasswordDialog setUpPasswordDialog = new SetUpPasswordDialog(HomeActivity.this);
-        setUpPasswordDialog.setCallBack(new SetUpPasswordDialog.MyCallBack() {
-            @Override
-            public void ok() {
-                String firstPwsd = setUpPasswordDialog.mFirstPWDET.getText().toString().trim();
-                String affirmPwsd = setUpPasswordDialog.mAffirmET.getText().toString().trim();
-
-
-                if (!TextUtils.isEmpty(firstPwsd) && !TextUtils.isEmpty(affirmPwsd)) {
-
-                    if (firstPwsd.equals(affirmPwsd)) {
-
+    private void showSetUpPswDialog(){
+        final SetUpPasswordDialog setUpPasswordDialog=new SetUpPasswordDialog(HomeActivity.this);
+        setUpPasswordDialog.setCallBack(new SetUpPasswordDialog.MyCallBack(){
+            public void ok(){
+                String firstPwsd=setUpPasswordDialog.mFirstPWDET.getText().toString().trim();
+                String affirmPwsd=setUpPasswordDialog.mAffirmET.getText().toString().trim();
+                if(!TextUtils.isEmpty(firstPwsd)&&!TextUtils.isEmpty(affirmPwsd)){
+                    if(firstPwsd.equals(affirmPwsd)){
                         savePswd(affirmPwsd);
                         setUpPasswordDialog.dismiss();
                         showInterPswdDialog();
-                    } else {
-                        Toast.makeText(HomeActivity.this, "两次密码不一致!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(HomeActivity.this,"两次密码不一致！",Toast.LENGTH_SHORT).show();
+
                     }
-                } else {
-                    Toast.makeText(HomeActivity.this, "密码不能为空!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(HomeActivity.this,"密码不能为空!",Toast.LENGTH_SHORT).show();
+
                 }
             }
 
-            @Override
-            public void cancle() {
+            public void cancle(){
                 setUpPasswordDialog.dismiss();
             }
         });
+
         setUpPasswordDialog.setCancelable(true);
-        setUpPasswordDialog.show(); */
+        setUpPasswordDialog.show();
     }
 
-    private void showInterPswdDialog() {
-
-       /* final String password = getPassword();
-        final InterPasswordDialog mInPswdDialog = new InterPasswordDialog(HomeActivity.this);
-
-        mInPswdDialog.setCallBack(new InterPasswordDialog.MyCallBack() {
-            @Override
-            public void confirm() {
-                if (TextUtils.isEmpty(mInPswdDialog.getPassword())) {
-                    Toast.makeText(HomeActivity.this, "密码不能为空!", Toast.LENGTH_SHORT).show();
-                } else if (password.equals(MD5Utils.encode(mInPswdDialog.getPassword()))) {
-
+    private void showInterPswdDialog(){
+        final String password=getPassword();
+        final InterPasswordDialog mInPswdDialog=new InterPasswordDialog(HomeActivity.this);
+        mInPswdDialog.setCallBack(new InterPasswordDialog.MyCallBack(){
+            public void comfirm(){
+                if(TextUtils.isEmpty(mInPswdDialog.getPassword())){
+                    Toast.makeText(HomeActivity.this,"密码不能为空!",Toast.LENGTH_SHORT).show();
+                }else if(password.equals(MD5Utils.encode(mInPswdDialog.getPassword()))){
                     mInPswdDialog.dismiss();
                     startActivity(LostFindActivity.class);
-                } else {
+                }else{
                     mInPswdDialog.dismiss();
-                    Toast.makeText(HomeActivity.this, "密码有误,请重新输入!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this,"密码有误，请重新输入！",Toast.LENGTH_SHORT).show();
                 }
             }
 
-            @Override
-            public void cancle() {
+            public void cancle(){
                 mInPswdDialog.dismiss();
             }
         });
-
         mInPswdDialog.setCancelable(true);
-        mInPswdDialog.show();*/
+        mInPswdDialog.show();
     }
 
-    private void savePswd(String affirmPwsd) {
-        SharedPreferences.Editor edit = msharedPreferences.edit();
-        //edit.putString("PhoneAntiTheftPWD",MD5Utils.encode(affirmPwsd));
-        edit.commit();
+    private void savePswd(String affirmPswd){
+        SharedPreferences.Editor editor=msharedPreferences.edit();
+        editor.putString("PhoneAntiTheftPWD", MD5Utils.encode(affirmPswd));
+        editor.commit();
     }
 
-    private String getPassword() {
-        String password = msharedPreferences.getString("PhoneAntiTheftPWD", null);
-        if (TextUtils.isEmpty(password)) {
+    private String getPassword(){
+        String password=msharedPreferences.getString("PhoneAntiTheftPWD",null);
+        if(TextUtils.isEmpty(password)){
             return "";
         }
         return password;
     }
 
-    private boolean isSetUpPassword() {
-        String password = msharedPreferences.getString("PhoneAntiTheftPWD", null);
-        if (TextUtils.isEmpty(password)) {
+    private boolean isSetUpPassword(){
+        String password=msharedPreferences.getString("PhoneAntiTheftPWD",null);
+        if(TextUtils.isEmpty(password)){
             return false;
         }
         return true;
     }
 
-    public void startActivity(Class<?> cls) {
-        Intent intent = new Intent(HomeActivity.this, cls);
+    public void startActivity(Class<?> cls){
+        Intent intent=new Intent(HomeActivity.this,cls);
         startActivity(intent);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                mExitTime = System.currentTimeMillis();
-            } else {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            if((System.currentTimeMillis()-mExitTime)>2000){
+                Toast.makeText(this,"再一次退出程序",Toast.LENGTH_SHORT).show();
+                mExitTime=System.currentTimeMillis();
+            }else{
                 System.exit(0);
             }
             return true;

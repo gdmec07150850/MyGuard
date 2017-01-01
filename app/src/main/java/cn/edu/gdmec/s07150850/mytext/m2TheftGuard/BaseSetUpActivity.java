@@ -2,14 +2,15 @@ package cn.edu.gdmec.s07150850.mytext.m2TheftGuard;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.Toast;
 
-import cn.edu.gdmec.s07150850.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 public abstract class BaseSetUpActivity extends AppCompatActivity {
 
@@ -34,13 +35,13 @@ public abstract class BaseSetUpActivity extends AppCompatActivity {
 
                 if ((e2.getRawX()-e1.getRawX())>200){
                     showPre();
-                    overridePendingTransition(R.anim.pre_in,R.anim.pre_out);
+                    overridePendingTransition(R.anim.pre_in, R.anim.pre_out);
                     return true;
                 }
 
                 if ((e1.getRawX()-e2.getRawX())>200){
                     showNext();
-                    overridePendingTransition(R.anim.next_in,R.anim.next_out);
+                    overridePendingTransition(R.anim.next_in, R.anim.next_out);
                     return true;
                 }
 

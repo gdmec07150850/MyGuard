@@ -11,34 +11,32 @@ import android.os.IBinder;
 public class AutoKillProcessService extends Service {
     private ScreenLockReceiver receiver;
 
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
-    @Override
     public void onCreate() {
-        receiver=new ScreenLockReceiver();
         super.onCreate();
-        registerReceiver(receiver,new IntentFilter(Intent.ACTION_SCREEN_OFF));
+        receiver = new ScreenLockReceiver();
+        registerReceiver(receiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
     }
 
     @Override
     public void onDestroy() {
         unregisterReceiver(receiver);
-        receiver=null;
+        receiver = null;
         super.onDestroy();
     }
-  class ScreenLockReceiver extends BroadcastReceiver{
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        ActivityManager am=(ActivityManager)getSystemService(ACTIVITY_SERVICE);
-        for (ActivityManager.RunningAppProcessInfo info : am.getRunningAppProcesses()){
-            String packname=info.processName;
-            am.killBackgroundProcesses(packname);
+
+    class ScreenLockReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            for (ActivityManager.RunningAppProcessInfo info : am.getRunningAppProcesses()) {
+                String packname = info.processName;
+                am.killBackgroundProcesses(packname);
+            }
         }
-    }
-}
-    @Override
-    public IBinder onBind(Intent intent) {
-return null;
-
     }
 }

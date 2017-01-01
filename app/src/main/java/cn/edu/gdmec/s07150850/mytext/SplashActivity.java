@@ -1,7 +1,7 @@
 package cn.edu.gdmec.s07150850.mytext;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -12,23 +12,23 @@ public class SplashActivity extends AppCompatActivity {
 
     private TextView mVersionTV;
     private String mVersion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_splash); mVersion = MyUtils.getVersion(getApplicationContext());
+        setContentView(R.layout.activity_splash);
+        mVersion = MyUtils.getVersion(getApplicationContext());
         initView();
-       final VersionUpdateUtils updateUtils = new VersionUpdateUtils(mVersion, SplashActivity.this);
+        final VersionUpdateUtils updateUtils = new VersionUpdateUtils(mVersion, SplashActivity.this);
         new Thread() {
             @Override
             public void run() {
 
-            updateUtils.getCloudVersion();
-            }
+                updateUtils.getCloudVersion();
+            };
 
-            ;
+
         }.start();
     }
 

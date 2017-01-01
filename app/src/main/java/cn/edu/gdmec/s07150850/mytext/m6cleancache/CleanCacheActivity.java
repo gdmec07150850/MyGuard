@@ -6,7 +6,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.Formatter;
 import android.view.View;
@@ -16,11 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Random;
 
-import cn.edu.gdmec.s07150804.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 public class CleanCacheActivity extends AppCompatActivity implements View.OnClickListener {
 protected static final int CLEANNING=100;
@@ -134,8 +133,8 @@ private void formatMemory(long memory){
     class ClearCacheObserver extends android.content.pm.IPackageDataObserver.Stub{
 
         @Override
-        public void onRemoveCompleted(String packageName,
-                                      boolean succeeded) throws RemoteException {
+        public void onRemoveCompleted(final String packageName,
+                                      final boolean succeeded) {
 
         }
     }
@@ -145,9 +144,7 @@ private void cleanAll(){
         if ("freeStorageAndNotify".equals(method.getName())){
             try {
                 method.invoke(pm,Integer.MAX_VALUE,new ClearCacheObserver());
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return;

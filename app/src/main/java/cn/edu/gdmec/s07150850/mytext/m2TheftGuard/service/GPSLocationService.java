@@ -20,7 +20,6 @@ public class GPSLocationService extends Service {
     private MyListener listener;
 
 
-
     public GPSLocationService() {
     }
 
@@ -37,27 +36,28 @@ public class GPSLocationService extends Service {
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
         criteria.setCostAllowed(true);
-        String name = lm.getBestProvider(criteria,true);
-        System.out.println("最好的位置提供者"+name);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!=
-                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) !=PackageManager.PERMISSION_GRANTED){
+        String name = lm.getBestProvider(criteria, true);
+        System.out.println("最好的位置提供者" + name);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        lm.requestLocationUpdates(name,0,0,listener);
+        lm.requestLocationUpdates(name, 0, 0, listener);
     }
 
-    private class MyListener implements LocationListener{
+    private class MyListener implements LocationListener {
 
         @Override
         public void onLocationChanged(Location location) {
             StringBuilder sb = new StringBuilder();
-            sb.append("accuracy:"+location.getAccuracy()+"\n");
-            sb.append("jingdu:"+location.getLongitude()+"\n");
-            sb.append("weidu:"+location.getLatitude()+"\n");
+            sb.append("accuracy:" + location.getAccuracy() + "\n");
+            sb.append("speed:"+location.getSpeed()+"\n");
+            sb.append("jingdu:" + location.getLongitude() + "\n");
+            sb.append("weidu:" + location.getLatitude() + "\n");
             String result = sb.toString();
-            SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
-            String safenumber = sp.getString("safephone","");
-            SmsManager.getDefault().sendTextMessage(safenumber,null,result,null,null);
+            SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+            String safenumber = sp.getString("safephone", "");
+            SmsManager.getDefault().sendTextMessage(safenumber, null, result, null, null);
             stopSelf();
 
         }
@@ -81,6 +81,16 @@ public class GPSLocationService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         lm.removeUpdates(listener);
         listener = null;
     }

@@ -8,20 +8,22 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import m3communicationguard.entity.ContactInfo;
+import cn.edu.gdmec.s07150850.mytext.R;
+import cn.edu.gdmec.s07150850.mytext.m2TheftGuard.entity.ContactInfo;
+
 
 /**
- * Created by Administrator on 2016/12/19 0019.
+ * Created by Administrator on 2016/12/22.
  */
 public class ContactAdapter extends BaseAdapter {
     private List<ContactInfo> contactInfos;
     private Context context;
-    public ContactAdapter(List<ContactInfo> systemContacts, Context context) {
+
+    public ContactAdapter(List<ContactInfo> systemContacts, Context context){
         super();
         this.contactInfos=systemContacts;
         this.context=context;
     }
-
     @Override
     public int getCount() {
         return contactInfos.size();
@@ -43,12 +45,12 @@ public class ContactAdapter extends BaseAdapter {
         if (convertView==null){
             convertView=View.inflate(context,R.layout.item_list_contact_select,null);
             holder=new ViewHolder();
-            holder.mNameTV=(TextView)convertView.findViewById(R.id.tv_name);
-            holder.mPhoneTV=(TextView)convertView.findViewById(R.id.tv_phone);
+            holder.mNameTV= (TextView) convertView.findViewById(R.id.tv_name);
+            holder.mPhoneTV= (TextView) convertView.findViewById(R.id.tv_phone);
             holder.mContactImgv=convertView.findViewById(R.id.view1);
             convertView.setTag(holder);
-        }else{
-            holder=(ViewHolder)convertView.getTag();
+        }else {
+            holder= (ViewHolder) convertView.getTag();
         }
         holder.mNameTV.setText(contactInfos.get(position).name);
         holder.mPhoneTV.setText(contactInfos.get(position).phone);

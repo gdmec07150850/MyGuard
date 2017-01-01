@@ -1,14 +1,14 @@
 package cn.edu.gdmec.s07150850.mytext.m2TheftGuard;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import cn.edu.gdmec.s07150850.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 public class SetUp4Activity extends BaseSetUpActivity {
 

@@ -3,8 +3,6 @@ package cn.edu.gdmec.s07150850.mytext.m2TheftGuard;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.CompoundButton;
@@ -13,7 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import cn.edu.gdmec.s07150850.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 public class LostFindActivity extends Activity implements View.OnClickListener {
 
@@ -24,7 +23,7 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
     private TextView mProtectStatusTV;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_lost_find);
@@ -47,11 +46,12 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
         mLeftImgv.setImageResource(R.drawable.back);
         findViewById(R.id.rl_titlebar).setBackgroundColor(
                 getResources().getColor(R.color.purple));
+        mSafePhoneTV = (TextView) findViewById(R.id.tv_safephone);
         mSafePhoneTV.setText(msharedPreferences.getString("safephone",""));
         mToggleButton = (ToggleButton)findViewById(R.id.togglebtn_lostfind);
         mInterSetUpRL = (RelativeLayout) findViewById(R.id.rl_inter_setup_wizard);
         mInterSetUpRL.setOnClickListener(this);
-        mProtectStatusTV = findViewById(R.id.tv_lostfind_protectstatus);
+        mProtectStatusTV = (TextView) findViewById(R.id.tv_lostfind_protectstauts);
         boolean protecting = msharedPreferences.getBoolean("protecting",true);
         if (protecting){
             mProtectStatusTV.setText("防盗保护已经开启");

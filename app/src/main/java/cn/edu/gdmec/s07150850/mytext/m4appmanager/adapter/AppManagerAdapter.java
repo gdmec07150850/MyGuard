@@ -2,13 +2,13 @@ package cn.edu.gdmec.s07150850.mytext.m4appmanager.adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.text.format.Formatter;
 import android.widget.Toast;
 
 import java.util.List;
@@ -52,7 +52,7 @@ public class AppManagerAdapter extends BaseAdapter {
             int location=position-UserAppInfos.size()-2;
             appInfo=SystemAppInfos.get(location);
         }
-        return null;
+        return appInfo;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class AppManagerAdapter extends BaseAdapter {
             viewHolder= (ViewHolder) convertView.getTag();
         }else {
             viewHolder=new ViewHolder();
-            convertView=View.inflate(context,R.layout.item_appmanager_list,null);
+            convertView=View.inflate(context, R.layout.item_appmanager_list,null);
             viewHolder.mAppIconImgv= (ImageView) convertView.findViewById(R.id.imgv_appicon);
             viewHolder.mAppLocationTV= (TextView) convertView.findViewById(R.id.tv_appisroom);
             viewHolder.mAppSizeTV= (TextView) convertView.findViewById(R.id.tv_appsize);
@@ -121,7 +121,7 @@ public class AppManagerAdapter extends BaseAdapter {
                 DensityUtil.dip2px(context,5),
                 DensityUtil.dip2px(context,5),
                 DensityUtil.dip2px(context,5));
-        tv.setTextColor(ContextCompat.getColor(context,R.color.black));
+        tv.setTextColor(ContextCompat.getColor(context, R.color.black));
         return tv;
     }
 

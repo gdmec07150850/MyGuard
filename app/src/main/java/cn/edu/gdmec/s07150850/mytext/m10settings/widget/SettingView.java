@@ -10,7 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import cn.edu.gdmec.s07150850.myguard.R;
+import cn.edu.gdmec.s07150850.mytext.R;
+
 
 /**
  * Created by PC-DELL on 2016/12/21.
@@ -50,7 +51,7 @@ public class SettingView extends RelativeLayout{
     }
 
     private void init(Context context){
-        View view = View.inflate(context,R.layout.ui_settings_view,null);
+        View view = View.inflate(context, R.layout.ui_settings_view,null);
         this.addView(view);
         mSettingTitleTV = (TextView) findViewById(R.id.tv_setting_title);
         mSettingStatusTV = (TextView) findViewById(R.id.tv_setting_status);

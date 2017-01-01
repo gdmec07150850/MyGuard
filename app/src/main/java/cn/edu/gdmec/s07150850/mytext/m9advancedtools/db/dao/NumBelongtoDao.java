@@ -2,29 +2,25 @@ package cn.edu.gdmec.s07150850.mytext.m9advancedtools.db.dao;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 
 public class NumBelongtoDao{
-    public static String getLocation(String phonebnumber){
-        String location=phonebnumber;
-        SQLiteDatabase db=SQLiteDatabase.openDatabase(
-                "data/data/cn.edu.gdemc.s07151816.myguard/files/address.db",null,
-                SQLiteDatabase.OPEN_READONLY);
-        if (phonebnumber.matches("^1[34578]\\d{9}]")){
+    public static String getLocation(String phonenumber){
+        String location=phonenumber;
+        SQLiteDatabase db=SQLiteDatabase.openDatabase("/data/data/cn.edu.gdmec.s07150850.mytext/files/address.db",null,SQLiteDatabase.OPEN_READONLY);
+        if (phonenumber.matches("^1[34578]\\d{9}$")){
             Cursor cursor=db.rawQuery("select location from data2 where id=(select outkey from data1 where id=?)",
-                    new String[]{phonebnumber.substring(0,7)});
+                    new String[]{phonenumber.substring(0,7) });
             if (cursor.moveToNext()){
                 location=cursor.getString(0);
             }
             cursor.close();
         }else{
-            switch (phonebnumber.length()){
+            switch (phonenumber.length()){
                 case 3:
-                    if ("110".equals(phonebnumber)){
+                    if ("110".equals(phonenumber)){
                         location="警匪";
-                    }else if ("120".equals(phonebnumber)){
+                    }else if ("120".equals(phonenumber)){
                         location="急救";
                     }else{
                         location="报警号码";
